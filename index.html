@@ -2,142 +2,162 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Online MQTT Web Client</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
-  <style>
-    body{
-      background-image: url(bg.jpg);
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online MQTT Web Client</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background: url('red.gif');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 
 </head>
 
 <body>
-  <hr>
-  <h1 style="text-align: center; color: white;">Online MQTT Web Client</h1>
-  <hr>
+    <hr>
+    <h1 style="text-align: center; color: white;">Online MQTT Web Client</h1>
+    <hr><br>
 
-  <div>
-    <div class="row">
-      <div class="col-sm" style=" margin-left: 15px;">
-        <div class="card" style="width: 27rem; background-color: rgb(221, 13, 110);">
-          <h4 align="center">Broker</h4>
-          <div class="card-body" style="background-color: bisque;">
-            <h6>Address:</h6>
-            <input type="text" readonly placeholder="wss://test.mosquitto.org:8081/mqtt" style="width: 100%;"><br><br>
-            <center>
-              <button type="button" id="connect" class="btn btn-primary">Connect</button>
-              <button type="button" id="disconnect" class="btn btn-danger">Disconnect</button>
-            </center>
+    <center>
+        <div class="col-auto" style="width: 35rem;">
 
-            <h6>Status:</h6>
-            <input type="text" readonly placeholder="Press to connect" id="status" value="">
-          </div>
+            <div class="input-group mb-2">
+                <input type="text" readonly placeholder="Press to connect to the broker!" class="form-control" id="status" value="">
+                <div class="input-group-prepend">
+                    <div class="input-group-text" style="background: rgb(223, 202, 121);"><i class="fa fa-wifi" style="font-size:30px;color:red" id="connect"></i></div>
+                </div>
+            </div>
         </div><br>
-        <div class="card" style="width: 27rem; background-color: rgb(148, 240, 62);">
-          <h6 align="center">Incomming Messages</h6>
-          <div class="card-body" style="background-color: bisque;">
-            <table class="tableMsg" style="text-align: center;width: 100%;">
-              <thead>
-                <tr>
-                  <th >Topic</th>
-                  <th>Payload </th>
-                  <th >Time Stamp</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+    </center>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm">
+                <div class="card" style="width: 23rem; background-color: #fcc203;">
+                    <h5 align="center">Incomming Messages</h5>
+                    <div class="card-body" style="background-color: bisque;">
+                        <table class="tableMsg" style="text-align: center;width: 100%;">
+                            <thead style="font-size: 15px;">
+                                <tr>
+                                    <th>Topic</th>
+                                    <th>Payload </th>
+                                    <th>Time Stamp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card" style="width: 23rem; background-color: rgb(221, 13, 110);">
+                    <h5 align="center" style="color: white;">Publish</h5>
+                    <div class="card-body" style="background-color: bisque;">
+                        <h6>Topic:</h6>
+                        <div class="col-auto">
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-envelope" style="font-size:25px;color:red"></i></div>
+                                </div>
+                                <input type="text" class="form-control" id="input-topic" placeholder="Enter your topic">
+                            </div>
+                        </div>
+                        <!-- <input type="text" class="form-control" id="input-topic" placeholder="Enter your topic"> -->
+
+                        <h6>Payload:</h6>
+                        <div class="col-auto">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control" id="input-payload" placeholder="Your message">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text"><i class="fa fa-send-o pubs" style="font-size:25px;color:blue"></i></div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- <button type="button " class="btn btn-primary pubs ">Publish</button> -->
+                    </div>
+                </div>
+
+                <div class="card " style=" background-color: #03a1fc ">
+                    <h6 align="center ">Messages</h6>
+                    <div class="card-body " style="background-color: bisque; ">
+                        <table class="tablePub " style="text-align: center;width: 100%; ">
+                            <thead>
+                                <tr>
+                                    <th>Topic</th>
+                                    <th>Payload</th>
+                                    <th>Time Stamp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm">
+                <div class="card " style="background-color: rgb(221, 13, 110); ">
+                    <h5 align="center " style="color: white;">Subscribe</h5>
+                    <div class="card-body " style="background-color: bisque; ">
+                        <h6>Topic:</h6>
+                        <div class="col-auto">
+                            <div class="input-group mb-2">
+                                <input type="text" class="form-control sub-in" placeholder="Enter your topic">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text "><i class="material-icons subs" style="color: red">&#xe064;</i></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card " style="background-color: #03a1fc ">
+                    <h6 align="center ">Messages</h6>
+                    <div class="card-body " style="background-color: bisque; ">
+                        <table id="tableSub " class="subT" style="text-align: center;width: 100%; ">
+                            <thead>
+                                <tr>
+                                    <th scope="col ">Topic</th>
+                                    <th scope="col ">Time Stamp</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="col-sm"  >
-        <div class="card" style="width: 27rem; background-color: rgb(221, 13, 110);">
-          <h4 align="center">Publish</h4>
-          <div class="card-body" style="background-color: bisque;">
-            <h6>Topic:</h6>
-            <input type="text" id="input-topic" style="width: 100%;">
-            <h6>Payload:</h6>
-            <input id="input-payload" type="text" style="width: 100%;"><br><br>
-            <button type="button" id="published" class="btn btn-primary">Publish</button>
-          </div>
-        </div><br>
-        <div class="card" style="width: 27rem; background-color: rgb(148, 240, 62);">
-          <h6 align="center">Publish Messages</h6>
-          <div class="card-body" style="background-color: bisque;">
-            <table class="tablePub" style="text-align: center;width: 100%;">
-              <thead>
-                <tr>
-                  <th >Topic</th>
-                  <th >Payload</th>
-                  <th >Time Stamp</th>
-                </tr>
-              </thead>
-              <tbody>
-
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-      <div class="col-sm"  >
-        <div class="card" style="width: 25rem; background-color: rgb(221, 13, 110);">
-          <h4 align="center">Subscribe</h4>
-          <div class="card-body" style="background-color: bisque;">
-            <h6>Topic:</h6>
-            <input type="text" id="input-subTopic" style="width: 100%;"><br><br>
-            <button type="button" id="subscribe" class="btn btn-primary">Subscribe</button>
-            <button type="button" class="btn btn-primary">Unsubscribe</button>
-          </div>
-        </div><br>
-        <div class="card" style="width: 25rem; background-color: rgb(148, 240, 62);">
-          <h6 align="center">Subscribe Messages</h6>
-          <div class="card-body" style="background-color: bisque;">
-            <table class="tableSub" style="text-align: center;width: 100%;">
-              <thead>
-                <tr>
-                  <th scope="col">Topic</th>
-                  <th scope="col">Time Stamp</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                </tr>
-              </tbody>
-            </table>
-
-          </div>
-        </div>
-
-      </div>
     </div>
-  </div>
 
-  
+
+
+
+
+
+
+
 
 
 
 </body>
-<script src="./browserMqtt.js"></script>
-<script src="./index.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="./browserMqtt.js "></script>
+<script src="./index.js "></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js "></script>
 
 </html>
